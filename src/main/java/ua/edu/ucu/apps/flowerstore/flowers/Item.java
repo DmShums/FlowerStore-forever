@@ -1,5 +1,7 @@
 package ua.edu.ucu.apps.flowerstore.flowers;
 
 public abstract class Item {
-    public abstract double getPrice();
+    private String description;
+    public abstract double price();
+    public abstract double getDescription();
 }

@@ -9,15 +9,10 @@ import ua.edu.ucu.apps.flowerstore.flowers.Flower;
 import ua.edu.ucu.apps.flowerstore.flowers.FlowerColor;
 import ua.edu.ucu.apps.flowerstore.flowers.FlowerType;
 
-@SpringBootApplication
 @RestController
+@SpringBootApplication
 public class FlowerStoreApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(FlowerStoreApplication.class, args);
-	}
-
-	@GetMapping("/")
-	public Flower hello() {
-		return new Flower(45.6, 5.0, FlowerColor.RED, FlowerType.TULIP);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FlowerStoreApplication.class, args);
+    }
 }
