@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/flowers")
+@RequestMapping("/flowers")
 public class FlowerController {
     private final FlowerService flowerService;
 
@@ -17,8 +17,9 @@ public class FlowerController {
         this.flowerService = flowerService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Flower> getAllFlowers() {
         return flowerService.getAllFlowers();
     }
 }
+
