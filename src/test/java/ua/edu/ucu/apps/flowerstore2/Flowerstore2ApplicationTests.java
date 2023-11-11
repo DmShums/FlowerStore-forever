@@ -1,35 +1,39 @@
 package ua.edu.ucu.apps.flowerstore2;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ua.edu.ucu.apps.flowerstore.flowers.*;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import ua.edu.ucu.apps.flowerstore.flowers.Flower;
+import ua.edu.ucu.apps.flowerstore.flowers.FlowerColor;
+import ua.edu.ucu.apps.flowerstore.flowers.FlowerController;
+import ua.edu.ucu.apps.flowerstore.flowers.FlowerService;
+import ua.edu.ucu.apps.flowerstore.flowers.FlowerType;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(FlowerController.class)
 public class Flowerstore2ApplicationTests {
 
-	@Autowired
-	private MockMvc mockMvc;
-
-	@MockBean
+	@Mock
 	private FlowerService flowerService;
 
 	@InjectMocks
 	private FlowerController flowerController;
+
+	private MockMvc mockMvc;
+
+	public Flowerstore2ApplicationTests() {
+		this.mockMvc = MockMvcBuilders.standaloneSetup(flowerController).build();
+	}
 
 	@Test
 	public void testGetAllFlowers() throws Exception {
@@ -38,8 +42,8 @@ public class Flowerstore2ApplicationTests {
 
 		when(flowerService.getAllFlowers()).thenReturn(flowers);
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/flowers"))
-				.andExpect(MockMvcResultMatchers.status().isOk());
+		mockMvc.perform(get("/flowers"))
+				.andExpect(status().isOk());
 	}
 
 	@Test
@@ -50,10 +54,10 @@ public class Flowerstore2ApplicationTests {
 
 		when(flowerService.getAllFlowers()).thenReturn(flowers);
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/flowers"))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(2))
-				.andExpect(MockMvcResultMatchers.jsonPath("$[0].description").value("Rose"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$[1].description").value("Chamomile"));
+		mockMvc.perform(get("/flowers"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.length()").value(2))
+				.andExpect(jsonPath("$[0].description").value("Rose"))
+				.andExpect(jsonPath("$[1].description").value("Chamomile"));
 	}
 }
