@@ -45,7 +45,7 @@ public class Flowerstore2ApplicationTests {
 	@Test
 	public void testGetAllFlowersWithData() throws Exception {
 		Flower rose = new Flower(1L, "Rose", 10.0, 5.0, FlowerColor.RED, FlowerType.ROSE);
-		Flower lily = new Flower(2L, "Lily", 8.0, 4.5, FlowerColor.WHITE, FlowerType.CHAMOMILE);
+		Flower lily = new Flower(2L, "Chamomile", 8.0, 4.5, FlowerColor.WHITE, FlowerType.CHAMOMILE);
 		List<Flower> flowers = Arrays.asList(rose, lily);
 
 		when(flowerService.getAllFlowers()).thenReturn(flowers);
