@@ -20,7 +20,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(FlowerController.class)
-public class FlowerstoreApplicationTests {
+public class Flowerstore2ApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
