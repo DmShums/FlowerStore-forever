@@ -17,7 +17,7 @@ public class BasketDecoratorTest {
         BasketDecorator basketDecorator = new BasketDecorator(mockItem);
 
         // Check if the total price is the sum of the item's price and the decorPrice
-        double expectedPrice = 10.0 + basketDecorator.price();
+        double expectedPrice = 14;
         assertEquals(expectedPrice, basketDecorator.price(), 0.001);
     }
 }
